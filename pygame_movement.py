@@ -3,10 +3,11 @@ import sys
 
 pygame.init()
 
+title = "G A M E"
 screen_width = 720
 screen_height = 720
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("GAME")
+pygame.display.set_caption(title)
 
 class Entity:
     def __init__(self, width, height, speed):
@@ -15,6 +16,11 @@ class Entity:
         self.x = (width - width) // 2
         self.y = (height - height) // 2
         self.speed = speed
+
+class Object:
+    def __init__(self, object_type, position: pygame.Vector2):
+        self.object_type = object_type
+        self.position = position
 
 
 player = Entity(50, 50, 2)
@@ -31,6 +37,8 @@ while running:
         player.y -= player.speed
     if keys[pygame.K_DOWN]:
         player.y += player.speed
+
+    print(f'x: {player.x}, y: {player.y}')
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
